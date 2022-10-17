@@ -1,0 +1,127 @@
+{% extends 'master/master.html' %}
+{% block content %}
+
+<section class="gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12">
+
+                <div class="slide-property-first mb-4">
+                    <div class="pr-price-into">
+                        <h2>{{property.heading}}<span class="prt-type {% if property.type == 'rent' %} rent {% elif property.type == 'sale' %}sale{% endif %}">For {{property.type}}</span></h2>
+                        <span><i class="ti-location-pin"></i>{{property.place}}, {{property.city}}</span>
+                    </div>
+                </div>
+
+                <div class="property3-slide single-advance-property mb-4">
+
+                    <div class="slider-for">
+                        {% for image in property.property_img.all %}
+                        <a href="assets/img/p-1.jpg" class="item-slick"><img src="{{image.image.url}}" alt="Alt"></a>
+                        {% endfor %}
+                    </div>
+                    <div class="slider-nav">
+                        {% for image in property.property_img.all %}
+                        <div class="item-slick"><img src="{{image.image.url}}" alt="Alt"></div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+
+                <div class="block-wrap">
+
+                    <div class="block-header">
+                        <h4 class="block-title">Property Info</h4>
+                    </div>
+
+                    <div class="block-body">
+                        <ul class="dw-proprty-info">
+                            <li class="text-capitalize"><strong>Bedrooms</strong>{{property.bedroom}} bedroom</li>
+                            <li class="text-capitalize"><strong>Total Rooms</strong>{{property.rooms}} rooms</li>
+                            <li class="text-capitalize"><strong>Parking</strong>{{property.parking}} cars</li>
+                            <li class="text-capitalize"><strong>Area</strong>{{property.area}} sq.ft</li>
+                            <li class="text-capitalize"><strong>Type</strong>{{property.type}}</li>
+                            <li class="text-capitalize"><strong>Price</strong>{{property.currency}}</li>
+                            <li class="text-capitalize"><strong>City</strong>{{property.city}}</li>
+                            <li class="text-capitalize"><strong>Build On</strong>{{property.get_building_age_display}} Years</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="block-wrap">
+
+                    <div class="block-header">
+                        <h4 class="block-title">Description</h4>
+                    </div>
+
+                    <div class="block-body">
+                        <p>{{property.description | safe}}</p>
+                    </div>
+
+                </div>
+                {% if property.floor_plan %}
+                <div class="block-wrap">
+
+                    <div class="block-header">
+                        <h4 class="block-title">Floor Plan</h4>
+                    </div>
+
+                    <div class="block-body">
+                        <div class="accordion" id="floor-option">
+                            <div class="card">
+                                <div class="card-header" id="firstFloor">
+                                    <h2 class="mb-0">
+                                        <button type="button" class="btn btn-link" data-toggle="collapse"
+                                            data-target="#firstfloor">First Floor<span>740 sq ft</span></button>
+                                    </h2>
+                                </div>
+                                <div id="firstfloor" class="collapse show" aria-labelledby="firstFloor"
+                                    data-parent="#floor-option">
+                                    <div class="card-body">
+                                        <img src="assets/img/floor.jpg" class="img-fluid" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="seconfFloor">
+                                    <h2 class="mb-0">
+                                        <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#secondfloor">Second Floor<span>710 sq ft</span></button>
+                                    </h2>
+                                </div>
+                                <div id="secondfloor" class="collapse" aria-labelledby="seconfFloor"
+                                    data-parent="#floor-option">
+                                    <div class="card-body">
+                                        <img src="assets/img/floor.jpg" class="img-fluid" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="third-garage">
+                                    <h2 class="mb-0">
+                                        <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#garages">Garage<span>520 sq ft</span></button>
+                                    </h2>
+                                </div>
+                                <div id="garages" class="collapse" aria-labelledby="third-garage"
+                                    data-parent="#floor-option">
+                                    <div class="card-body">
+                                        <img src="assets/img/floor.jpg" class="img-fluid" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                {% include 'properties/user/property_details_query_form.html' %}
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

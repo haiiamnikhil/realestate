@@ -1,0 +1,58 @@
+{% extends 'dashboard/base/dashboard.html' %}
+{% block content %}
+{% load humanize %}
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="form-group">
+            <div class="input-with-icon">
+                <input type="text" class="form-control" name="search" placeholder="Search" value="">
+                <i class="ti-search"></i>
+            </div>
+        </div>
+    </div>
+    {% for property in object_list %}
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="property-listing property-2">
+
+            <div class="listing-img-wrapper">
+                <div class="list-img-slide">
+                    <div class="click">
+                        {% for image in property.property_img.all %}
+                        
+                        <div><a href="{% url 'user_property_details' property.slug property.uid %}"><img
+                                    src="{{image.image.url}}" alt="{{image.uid}}" class="img-fluid mx-auto" /></a></div>
+                        
+                        {% endfor %}
+                    </div>
+                </div>
+                <span class="property-type">For {{property.type.capitalize}}</span>
+            </div>
+
+            <div class="listing-detail-wrapper pb-0">
+                <div class="listing-short-detail">
+                    <h4 class="listing-name"><a
+                            href="{% url 'user_property_details' property.slug property.uid %}">{{property.heading}}</a></h4>
+                </div>
+            </div>
+
+            <div class="price-features-wrapper">
+                <div class="listing-price-fx">
+                    <h6 class="listing-card-info-price">{{property.currency}}<i
+                        class="list-status ti-check"></i></h6>
+                </div>
+                <div class="list-fx-features">
+                    <div class="listing-card-info-icon">
+                        <span class="inc-fleat inc-bed">{{property.bedroom}} Beds</span>
+                    </div>
+                    <div class="listing-card-info-icon">
+                        <span class="inc-fleat inc-bath">{{property.bathroom}} Bath</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% include 'properties/common/pagination.html' with url_name=request.resolver_match.view_name %}
+{% endblock %}

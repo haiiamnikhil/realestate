@@ -1,0 +1,46 @@
+{% load static %}
+{% with url_name=request.resolver_match.view_name %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>RealEstate 2</title>
+    <base href="/properties/">
+    <link href="{% static 'assets/css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/colors.css' %}" rel="stylesheet">
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+</head>
+
+<body class="blue-skin">
+    <div id="preloader"><div class="preloader"><span></span><span></span></div></div>
+
+    <div class="main-wrapper">
+        {% include 'common/header.html' %}
+        {% block content %}
+
+        {% endblock %}
+        <a id="back2Top" class="top-scroll" title="Back to top" href="submit-property.html#"><i class="ti-arrow-up"></i></a>
+        {% include 'common/footer.html' %}
+    </div>
+
+    
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/rangeslider.js' %}"></script>
+    <script src="{% static 'assets/js/select2.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'assets/js/slick.js' %}"></script>
+    <script src="{% static 'assets/js/slider-bg.js' %}"></script>
+    <script src="{% static 'assets/js/lightbox.js' %}"></script>
+    <script src="{% static 'assets/js/imagesloaded.js' %}"></script>
+    
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script src="{% static 'assets/js/script.js' %}"></script>
+    <script src="{% static 'assets/js/cl-switch.js' %}"></script>
+
+</body>
+
+</html>
+{% endwith %}

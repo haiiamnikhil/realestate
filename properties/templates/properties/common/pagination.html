@@ -1,0 +1,29 @@
+{% if is_paginated %}
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <ul class="pagination p-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="{% url ''|add:url_name %}?page={{ page_obj.previous_page_number }}"
+                    aria-label="Previous">
+                    <span class="ti-arrow-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            {% endif %}
+            <li class="page-item"><a class="page-link" href="grid.html#">{{ page_obj.number }}</a></li>
+            <li class="page-item"><a class="page-link" href="grid.html#">{{ page_obj.paginator.num_pages }}</a>
+            </li>
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{% url ''|add:url_name %}?page={{ page_obj.next_page_number }}"
+                    aria-label="Next">
+                    <span class="ti-arrow-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endif %}

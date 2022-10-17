@@ -1,0 +1,44 @@
+{% extends 'authentication/base/authentication.html' %}
+{% block content %}
+<div class="container">
+    <div class="row lgrw">
+        <div class="col-xl-6 d-flex align-items-center justify-content-center">
+            <div class="card w-100 bg-shadow">
+                <div class="card-body">
+                    <h2 class="text-center">Log In</h2>
+                    <div class="login-form">
+                        <form action="{% url 'admin_login_validate' %}" method="post">
+    
+                            <div class="form-group">
+                                <label>User Name</label>
+                                <div class="input-with-icon">
+                                    <input type="email" class="form-control" placeholder="Email" name="username">
+                                    <i class="ti-user"></i>
+                                </div>
+                            </div>
+    
+                            <div class="form-group">
+                                <label>Password</label>
+                                <div class="input-with-icon">
+                                    <input type="password" class="form-control" placeholder="*******" name="password">
+                                    <i class="ti-unlock"></i>
+                                </div>
+                            </div>
+                            {% if request.GET.next %}
+                            <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+                            {% endif %}
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-md w-50 pop-login">Login</button>
+                            </div>
+    
+                        </form>
+                    </div>
+                    <div class="text-center">
+                        <p class="mt-1 mb-1"><a href="{% url 'admin_forgot_password_temp' %}" class="link">Forgot password?</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

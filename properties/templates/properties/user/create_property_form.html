@@ -1,0 +1,395 @@
+<div class="page-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+
+                <h2 class="ipt-title">Submit Property</h2>
+                <span class="ipn-subtitle">Just Submit Your Property</span>
+
+            </div>
+        </div>
+    </div>
+</div>
+<section>
+    <div class="container">
+        {% if not user.is_authenticated %}
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+
+                <div class="alert alert-success" role="alert">
+                    <p>Please, Sign In before you submit a property. If you don't have an account you can create
+                        one by
+                        <a href="submit-property.html#">Clicking Here</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        {% endif %}
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <form action="{% url 'user_create_property' %}" method="post" id="crtProp"
+                    enctype="multipart/form-data">
+                    <div class="submit-page">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="form-submit">
+                                    <h3>Basic Information</h3>
+                                    <div class="submit-section">
+                                        <div class="form-row">
+
+                                            <div class="form-group col-md-12">
+                                                <label>Property Title</label>
+                                                <input required type="text" class="form-control" name="heading"
+                                                    placeholder="Full Heading">
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label>Type</label>
+                                                <select id="status" class="form-control" name="type">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="rent">For Rent</option>
+                                                    <option value="sale">For Sale</option>
+                                                    <option value="lease">For Lease</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label>Property Category</label>
+                                                <select id="ptypes" class="form-control" name="category">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="house">House</option>
+                                                    <option value="apartment">Apartment</option>
+                                                    <option value="villas">Villas</option>
+                                                    <option value="commercial">Commercial</option>
+                                                    <option value="office">Office</option>
+                                                    <option value="flat">Flat</option>
+                                                    <option value="land">Land</option>
+                                                </select>
+
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label>Price</label>
+                                                <input required type="text" class="form-control" placeholder="INR"
+                                                    name="price">
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label>Area</label>
+                                                <input required type="text" class="form-control" name="area"
+                                                    placeholder="Area">
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label>Bedrooms</label>
+                                                <select id="bedrooms" class="form-control" name="bedroom">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="4+">4+</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label>Bathroom</label>
+                                                <select id="bathroom" class="form-control" name="bathroom">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="4">4+</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label>Furnished</label>
+                                                <select id="furnished" class="form-control" name="furnished">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="not">Not Furnished</option>
+                                                    <option value="semi">Semi Furnished</option>
+                                                    <option value="full">Fully Furnished</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="form-submit">
+                                    <h3>Gallery</h3>
+                                    <div class="submit-section">
+                                        <div class="form-row">
+
+                                            <div class="form-group col-md-12">
+
+                                                <div class="dropzone dz-clickable primary-dropzone">
+                                                    <div class="dz-default dz-message" id="imgShdiv">
+                                                        <i class="ti-gallery"></i>
+                                                        <span>Drag & Drop To Change Logo</span>
+                                                        <input required type="file" class="img-upload" multiple
+                                                            id="propuplimg" name="pro_image"
+                                                            accept="image/jpg,image/png,image/jpeg,image/gif">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="form-submit">
+                                    <h3>Location</h3>
+                                    <div class="submit-section">
+                                        <div class="form-row">
+
+                                            <div class="form-group col-md-6">
+                                                <label>Address</label>
+                                                <input required type="text" class="form-control" name="address"
+                                                    placeholder="Enter full address">
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label>Place</label>
+                                                <input required type="text" class="form-control" name="place"
+                                                    placeholder="Enter place name">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>City</label>
+                                                <input required type="text" class="form-control" name="city"
+                                                    placeholder="Enter city name">
+                                            </div>
+
+                                            <div class="form-group col-md-4">
+                                                <label>State</label>
+                                                <input required type="text" class="form-control" name="state"
+                                                    placeholder="Enter state name">
+                                            </div>
+
+                                            <div class="form-group col-md-4">
+                                                <label>Zip Code</label>
+                                                <input required type="text" class="form-control" name="zipcode"
+                                                    placeholder="Enter zipcode">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="form-submit">
+                                    <h3>Detailed Information</h3>
+                                    <div class="submit-section">
+                                        <div class="form-row">
+
+                                            <div class="form-group col-md-12">
+                                                <label>Description</label>
+                                                <textarea class="form-control h-120" name="description"
+                                                    placeholder="Full Description"></textarea>
+                                            </div>
+
+                                            <div class="form-group col-md-4">
+                                                <label>Building Age</label>
+                                                <select id="bage" class="form-control" name="building_age">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="1">0 - 5 Years</option>
+                                                    <option value="2">0 - 10Years</option>
+                                                    <option value="3">0 - 15 Years</option>
+                                                    <option value="4">0 - 20 Years</option>
+                                                    <option value="20+">20+ Years</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group col-md-4">
+                                                <label>Parking</label>
+                                                <select id="parking" class="form-control" name="parking">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="3+">3+</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group col-md-4">
+                                                <label>Rooms</label>
+                                                <select id="rooms" class="form-control" name="rooms">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="3+">3+</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                                <label>Other Features (optional)</label>
+                                                <div class="o-features">
+                                                    <ul class="no-ul-list third-row">
+                                                        <li>
+                                                            <input required id="bachelors" class="checkbox-custom"
+                                                                 type="checkbox">
+                                                            <label for="bachelors"
+                                                                class="checkbox-custom-label">Bachelors</label>
+                                                        </li>
+                                                        <li>
+                                                            <input required id="Family" class="checkbox-custom"
+                                                                name="Family" type="checkbox">
+                                                            <label for="Family"
+                                                                class="checkbox-custom-label">Family</label>
+                                                        </li>
+                                                        
+                                                        <li>
+                                                            <input required id="terrace" class="checkbox-custom"
+                                                                name="terrace" type="checkbox">
+                                                            <label for="terrace"
+                                                                class="checkbox-custom-label">Terrace</label>
+                                                        </li>
+                                                        
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="form-submit">
+                                    <div class="submit-section">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <ul class="no-ul-list">
+                                                    <li>
+                                                        <input required id="flrpln" class="checkbox-custom" name="floor_plan"
+                                                            type="checkbox" data-toggle="collapse" href="#addflrpln"
+                                                            aria-expanded="false" aria-controls="addflrpln">
+                                                        <label for="flrpln" class="checkbox-custom-label">Add Floor
+                                                            Plan</label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="collapse" id="addflrpln" aria-expanded="false" role="banner">
+
+                                                <div class="form-group col-md-12">
+                                                    
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="form-submit">
+                                    <h3>Contact Information</h3>
+                                    <div class="submit-section">
+                                        <div class="form-row">
+
+                                            <div class="form-group col-md-4">
+                                                <label>Name</label>
+                                                <input required type="text" class="form-control" name="contact_name"
+                                                    placeholder="Full Name">
+                                            </div>
+
+                                            <div class="form-group col-md-4">
+                                                <label>Email</label>
+                                                <input required type="text" class="form-control" name="contact_email"
+                                                    placeholder="Contact email">
+                                            </div>
+
+                                            <div class="form-group col-md-4">
+                                                <label>Phone</label>
+                                                <input required type="number" class="form-control" name="contact_phone"
+                                                    placeholder="Contact Number">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="form-submit">
+                                    <h3>Allow Suggetions</h3>
+                                    <div class="submit-section">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label>Suggetions (optional)</label>
+                                                <div class="o-features">
+                                                    <ul class="no-ul-list third-row">
+                                                        <li>
+                                                            <input required id="related_post" class="checkbox-custom"
+                                                                name="related_post" type="checkbox">
+                                                            <label for="related_post"
+                                                                class="checkbox-custom-label">Show related post</label>
+                                                        </li>
+                                                        <li>
+                                                            <input required id="contactdetails" class="checkbox-custom"
+                                                                name="contactdetails" type="checkbox">
+                                                            <label for="contactdetails"
+                                                                class="checkbox-custom-label">Show contact details</label>
+                                                        </li>
+                                                        <li>
+                                                            <input required id="allow_reviews" class="checkbox-custom"
+                                                                name="allow_reviews" type="checkbox">
+                                                            <label for="allow_reviews"
+                                                                class="checkbox-custom-label">Allow customer reviews</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+
+                        <div class="form-group col-lg-12 col-md-12">
+                            <label>GDPR Agreement *</label>
+                            <ul class="no-ul-list">
+                                <li>
+                                    <input required id="agrement" class="checkbox-custom" name="agrement"
+                                        type="checkbox">
+                                    <label for="agrement" class="checkbox-custom-label">I consent to having this
+                                        website
+                                        store
+                                        my submitted information so they can respond to my inquiry.</label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="form-group col-lg-12 col-md-12">
+                            <a class="btn btn-theme" href="#" id="subPrevProp">Submit & Preview</a>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

@@ -1,0 +1,9 @@
+
+<div class="d-user-avater">
+    {% for image in user.user_profile_img.filter %}
+    <img src="{{image.profile_image.url}}" class="img-fluid avater" alt="{{image.uid}}">
+    {% endfor %}
+    <h4>{{user.full_name}}</h4>
+    <span>{{user.city}}</span><br>
+    <span class="text-capitalize">{{user.role}}</span>
+</div>

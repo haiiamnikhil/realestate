@@ -1,0 +1,51 @@
+{% extends 'dashboard/base/dashboard.html' %}
+{% block content %}
+{% load static %}
+{% load humanize %}
+<div class="card bg-shadow">
+    <div class="card-body">
+
+        <div class="block-wrap p-0" style="border:none;">
+
+            <div class="block-header">
+                <h4 class="block-title">{{object_list.count}} Messages</h4>
+            </div>
+
+            <div class="block-body">
+                <div class="author-review">
+                    <div class="comment-list">
+                        <ul>
+                            {% for comment in object_list %}
+                            <li class="article_comments_wrap">
+                                <article>
+                                    <div class="article_comments_thumb">
+                                        <img src="{% static 'assets/img/default.png' %}" alt="">
+                                    </div>
+                                    <div class="comment-details">
+                                        <div class="comment-meta">
+                                            <div class="comment-left-meta">
+                                                <a href="{% url 'admin_notifications_details' comment.uid %}">
+                                                    <h3>{{comment.property.heading}}</h3>
+                                                </a>
+                                                <h4 class="client-name">{{comment.user.full_name}}</h4>
+                                                <div class="comment-date">{{comment.created_at | naturaltime}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="comment-text">
+                                            <p>{{comment.comment | slice:150}}</p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% include 'properties/common/pagination.html' with url_name=request.resolver_match.view_name %}
+{% endblock %}

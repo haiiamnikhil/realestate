@@ -1,0 +1,17 @@
+{% extends 'dashboard/base/dashboard.html' %}
+{% block content %}
+{% load humanize %}
+<div class="single-post-item format-standard bg-shadow">
+    <div class="post-details">
+        
+        <div class="post-top-meta">
+            <ul class="meta-comment-tag">
+                <li><span class="icons"><i class="ti-user"></i></span> {{notification.user.full_name}}</li>
+                <li><span class="icons"><i class="ti-time"></i></span> {{notification.created_at | naturaltime}}</li>
+            </ul>
+        </div>
+        <h2 class="post-title">{{notification.property.heading}}</h2>
+        <p>{{notification.comment}}.</p>
+    </div>
+</div>
+{% endblock %}

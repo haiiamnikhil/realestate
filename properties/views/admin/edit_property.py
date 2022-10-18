@@ -3,14 +3,18 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from properties.models import Properties, PropertyImages
 from user.models import UserDetails
+from utils.common.response.response import ResponseGenerator
 
 
 @method_decorator(login_required, name="dispatch")
+@method_decorator(csrf_exempt, name="dispatch")
 class EditPropertiesAdmin(generic.UpdateView):
     template_name = 'properties/admin/edit_property.html'
+    response_render = ResponseGenerator()
 
     def get(self, request, uid):
         context = self.get_context(uid)
@@ -23,11 +27,13 @@ class EditPropertiesAdmin(generic.UpdateView):
         return params
 
 
-    def post(self, request):
+    def post(self, request, uid):
         values = self.extract_values(request)
+        print(values)
         try:
-            property = Properties.objects.update_or_create(uid=values['uid'],defaults=values)
+            property = Properties.objects.update_or_create(uid=uid,defaults=values)
             files = request.FILES.getlist('image')
+            print(files)
             if len(files) > 0:
                 add_file = self.add_prop_file(property,files)
             response = self.response_render.render_response_json(True,redirect_url='user_list_properties')
@@ -40,7 +46,6 @@ class EditPropertiesAdmin(generic.UpdateView):
     def extract_values(self, request):
         params = {}
         data = request.POST
-
         for key, value in data.items():
             params[key] = value
 

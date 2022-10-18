@@ -67,7 +67,7 @@ class Properties(models.Model):
 
     heading = models.CharField(max_length=250, unique=False, null=True, blank=True)
     description = models.TextField(null=True,blank=True)
-    price = models.FloatField(blank=True, null=True)
+    price = models.CharField(max_length=15, unique=False, blank=True, null=True)
       
     address = models.CharField(max_length=250, unique=False, blank=True, null=True)
     zipcode = models.CharField(max_length=20, unique=False, blank=True, null=True)
@@ -109,11 +109,11 @@ class Properties(models.Model):
     @property
     def currency(self):
         locale.setlocale(locale.LC_MONETARY, 'en_IN')
-        price = locale.currency(self.price, grouping=True)
+        price = locale.currency(float(self.price.replace(',','')), grouping=True)
         return price
     
     @property
     def currency_with_no_symb(self):
         locale.setlocale(locale.LC_MONETARY, 'en_IN')
-        price = locale.currency(self.price, grouping=True,symbol=False)
+        price = locale.currency(float(self.price.replace(',','')), grouping=True,symbol=False)
         return price

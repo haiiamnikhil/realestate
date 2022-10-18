@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'notifications',
     'dashboard',
     'home',
+    'system_settings',
 ]
 
 MIDDLEWARE = [

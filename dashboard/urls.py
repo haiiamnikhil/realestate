@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
 
 from dashboard.views.admin import dashboard_admin
-from properties.views.admin import create_property, list_properties, edit_property
+from properties.views.admin import create_property, edit_property, list_properties
 from user.views.admin import change_password
 from notifications.views.admin import list_notificaitions, notification_details
 

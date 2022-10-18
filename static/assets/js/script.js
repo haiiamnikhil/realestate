@@ -24,14 +24,6 @@ $(window).ready(function () {
     let loader = '<div class="div-loader" aria-busy="true" id="progress" aria-label="Loading, please wait." role="progressbar"></div>'
 
     // Create prop
-    $(document).on('click', '#flrpln', function () {
-        let checked = $(this).is(':checked')
-        if (checked) {
-            $('#addflrpln').addClass('show')
-        } else {
-            $('#addflrpln').removeClass('show')
-        }
-    });
     let uploadedFile = []
     $(document).on('change', '#propuplimg', function () {
         for (let i = 0; i < this.files.length; i++) {

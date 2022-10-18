@@ -32,7 +32,10 @@
                 <div class="listing-short-detail">
                     <h4 class="listing-name"><a
                             href="{% url 'user_property_details' property.slug property.uid %}">{{property.heading}}</a></h4>
-                </div>
+                        </div>
+                        <a href="{% url 'admin_edit_property' property.uid %}">
+                            <span class="icons"><i class="ti-pencil"></i></span>
+                        </a>
             </div>
 
             <div class="price-features-wrapper">

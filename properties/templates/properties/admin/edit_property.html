@@ -1,0 +1,282 @@
+{% extends 'dashboard/base/dashboard.html' %}
+{% block content %}
+{% load static %}
+<script>
+    $(document).ready(function(){
+        $('#type').val('{{property.type}}');
+        $('#category').val('{{property.category}}');
+        $('#bedrooms').val('{{property.bedroom}}');
+        $('#bathroom').val('{{property.bathroom}}');
+        $('#rooms').val('{{property.rooms}}');
+        $('#furnished').val('{{property.furnished}}');
+        $('#bage').val('{{property.building_age}}');
+        $('#parking').val('{{property.parking}}');
+        for (let i = 0; i < this.files.length; i++) {
+            const file = this.files[i];
+            uploadedFile.push(file)
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function (event) {
+                    $('#imgShdiv').find('span').hide()
+                    $('#imgShdiv').find('i').hide()
+                    $('#imgShdiv').addClass('d-flex')
+                    let uploadImgDiv = '<div class="dropimg" id="dropimg"><img src=' + event.target.result + ' class="img-wd-150" alt=' + file.name + '></div>'
+                    $('#imgShdiv').append(uploadImgDiv)
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    })
+</script>
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <form action="{% url 'admin_create_property' %}" method="post" id="crtProp" enctype="multipart/form-data">
+            <div class="submit-page">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="form-submit">
+                            <h3>Basic Information</h3>
+                            <div class="submit-section">
+                                <div class="form-row">
+
+                                    <div class="form-group col-md-12">
+                                        <label>Property Title</label>
+                                        <input required type="text" class="form-control" name="heading"
+                                            placeholder="Full Heading" value="{{property.heading}}">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Type</label>
+                                        <select id="type" class="form-control" name="type">
+                                            <option value="">&nbsp;</option>
+                                            <option value="rent">For Rent</option>
+                                            <option value="sale">For Sale</option>
+                                            <option value="lease">For Lease</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label>Property Category</label>
+                                        <select id="category" class="form-control" name="category">
+                                            <option value="">&nbsp;</option>
+                                            <option value="house">House</option>
+                                            <option value="apartment">Apartment</option>
+                                            <option value="villas">Villas</option>
+                                            <option value="commercial">Commercial</option>
+                                            <option value="office">Office</option>
+                                            <option value="flat">Flat</option>
+                                            <option value="land">Land</option>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label>Price</label>
+                                        <input required type="text" class="form-control" placeholder="INR" name="price" value="{{property.currency_with_no_symb}}">
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label>Area</label>
+                                        <input required type="text" class="form-control" name="area" placeholder="Area" value="{{property.area}}">
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label>Bedrooms</label>
+                                        <select id="bedrooms" class="form-control" name="bedroom">
+                                            <option value="">&nbsp;</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="4+">4+</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label>Bathroom</label>
+                                        <select id="bathroom" class="form-control" name="bathroom">
+                                            <option value="">&nbsp;</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="4">4+</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label>Rooms</label>
+                                        <select id="rooms" class="form-control" name="rooms">
+                                            <option value="">&nbsp;</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="3+">3+</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label>Furnished</label>
+                                        <select id="furnished" class="form-control" name="furnished">
+                                            <option value="">&nbsp;</option>
+                                            <option value="not">Not Furnished</option>
+                                            <option value="semi">Semi Furnished</option>
+                                            <option value="full">Fully Furnished</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="form-submit">
+                            <h3>Gallery</h3>
+                            <div class="submit-section">
+                                <div class="form-row">
+
+                                    <div class="form-group col-md-12">
+
+                                        <div class="dropzone dz-clickable primary-dropzone">
+                                            <div class="dz-default dz-message" id="imgShdiv">
+                                                <i class="ti-gallery"></i>
+                                                <span>Drag & Drop To Change Logo</span>
+                                                <input required type="file" class="img-upload" multiple id="propuplimg"
+                                                    name="pro_image" accept="image/jpg,image/png,image/jpeg,image/gif">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="form-submit">
+                            <h3>Location</h3>
+                            <div class="submit-section">
+                                <div class="form-row">
+
+                                    <div class="form-group col-md-6">
+                                        <label>Address</label>
+                                        <input required type="text" class="form-control" name="address"
+                                            placeholder="Enter full address" value="{{property.address}}">
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label>Place</label>
+                                        <input required type="text" class="form-control" name="place"
+                                            placeholder="Enter place name" value="{{property.place}}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>City</label>
+                                        <input required type="text" class="form-control" name="city"
+                                            placeholder="Enter city name" value="{{property.city}}">
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>State</label>
+                                        <input required type="text" class="form-control" name="state"
+                                            placeholder="Enter state name" value="{{property.state}}">
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>Zip Code</label>
+                                        <input required type="text" class="form-control" name="zipcode"
+                                            placeholder="Enter zipcode" value="{{property.zipcode}}">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="form-submit">
+                            <h3>Detailed Information</h3>
+                            <div class="submit-section">
+                                <div class="form-row">
+
+                                    <div class="form-group col-md-12">
+                                        <label>Description</label>
+                                        <textarea class="form-control h-120" name="description"
+                                            placeholder="Full Description">{{property.description}}</textarea>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>Building Age</label>
+                                        <select id="bage" class="form-control" name="building_age">
+                                            <option value="">&nbsp;</option>
+                                            <option value="1">0 - 5 Years</option>
+                                            <option value="2">0 - 10Years</option>
+                                            <option value="3">0 - 15 Years</option>
+                                            <option value="4">0 - 20 Years</option>
+                                            <option value="20+">20+ Years</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>Parking</label>
+                                        <select id="parking" class="form-control" name="parking">
+                                            <option value="">&nbsp;</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="3+">3+</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="form-submit">
+                            <h3>Contact Information</h3>
+                            <div class="submit-section">
+                                <div class="form-row">
+
+                                    <div class="form-group col-md-4">
+                                        <label>Name</label>
+                                        <input required type="text" class="form-control" name="contact_name"
+                                            placeholder="Full Name" value="{{property.contact_name}}">
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>Email</label>
+                                        <input required type="text" class="form-control" name="contact_email"
+                                            placeholder="Contact email" value="{{property.contact_email}}">
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>Phone</label>
+                                        <input required type="number" class="form-control" name="contact_phone"
+                                            placeholder="Contact Number" value="{{property.contact_phone}}">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-12 col-md-12">
+                    <a class="btn btn-theme" href="#" id="subPrevProp">Update & Preview</a>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

@@ -110,3 +110,9 @@ class Properties(models.Model):
         locale.setlocale(locale.LC_MONETARY, 'en_IN')
         price = locale.currency(self.price, grouping=True)
         return price
+    
+    @property
+    def currency_with_no_symb(self):
+        locale.setlocale(locale.LC_MONETARY, 'en_IN')
+        price = locale.currency(self.price, grouping=True,symbol=False)
+        return price

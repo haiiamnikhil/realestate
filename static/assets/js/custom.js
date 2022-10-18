@@ -400,8 +400,8 @@ $(function() {
 	});
 	
 	// Select Property Types
-	$('#ptypes').select2({
-		placeholder: "Property Types",
+	$('#category').select2({
+		placeholder: "Property category",
 		allowClear: true
 	});
 	
@@ -430,8 +430,8 @@ $(function() {
 	});
 	
 	// Select Status
-	$('#status').select2({
-		placeholder: "Select Status",
+	$('#type').select2({
+		placeholder: "Select Type",
 		allowClear: true
 	});
 	

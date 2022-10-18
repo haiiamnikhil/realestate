@@ -1,17 +1,1 @@
- $(document).ready(function() {
- if ($('[data-background]').length > 0) {
-      $('[data-background]').each(function() {
-        var $background, $backgroundmobile, $this;
-        $this = $(this);
-        $background = $(this).attr('data-background');
-        $backgroundmobile = $(this).attr('data-background-mobile');
-        if ($this.attr('data-background').substr(0, 1) === '#') {
-          return $this.css('background-color', $background);
-        } else if ($this.attr('data-background-mobile') && device.mobile()) {
-          return $this.css('background-image', 'url(' + $backgroundmobile + ')');
-        } else {
-          return $this.css('background-image', 'url(' + $background + ')');
-        }
-      });
-    }
-  });
+$(document).ready(function(){$("[data-background]").length>0&&$("[data-background]").each(function(){var a,t,r;return(r=$(this),a=$(this).attr("data-background"),t=$(this).attr("data-background-mobile"),"#"===r.attr("data-background").substr(0,1))?r.css("background-color",a):r.attr("data-background-mobile")&&device.mobile()?r.css("background-image","url("+t+")"):r.css("background-image","url("+a+")")})});

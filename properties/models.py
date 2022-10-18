@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 import locale
+
 from user.models import UserDetails
 
 

@@ -244,4 +244,25 @@ $(window).ready(function () {
         })
     });
 
+    // delete property
+    $(document).on('click','#dltProp',function(e){
+        e.preventDefault();
+        let url = $(this).attr('href');
+        let uid = $(this).attr('data-prop-id')
+        let formData = new FormData();
+        formData.append('uid',uid)
+        $.ajax({
+            url:url,
+            type:'post',
+            data:formData,
+            processData:false,
+            contentType:false,
+            success:function(response){
+                if (response.success && response.redirect_url == null){
+                    window.location.reload()
+                }
+            }
+        })
+    })
+
 });

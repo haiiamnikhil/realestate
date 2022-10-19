@@ -6,6 +6,7 @@ from dashboard.views.admin import dashboard_admin
 from properties.views.admin import create_property, edit_property, list_properties
 from user.views.admin import change_password
 from notifications.views.admin import list_notificaitions, notification_details
+from properties.ajax.property import delete_prop
 
 urlpatterns = [
     # Template View
@@ -25,4 +26,5 @@ urlpatterns = [
     
     # Ajax
     path('admin/password/update/', change_password.ChangePasswordAdmin.as_view(), name='change_password_view'),
+    path('ajax/prop/status/', delete_prop, name='delete_prop_ajax'),
 ]

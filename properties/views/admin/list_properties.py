@@ -15,7 +15,7 @@ class ListPoppertiesAdmin(generic.ListView):
 
     def get_queryset(self):
         query = super().get_queryset()
-        properties = query.all().order_by('-created_at')
+        properties = query.filter(status='active').order_by('-created_at')
         paginator = Paginator(properties, self.paginate_by)
 
         page = self.request.GET.get('page')

@@ -33,8 +33,11 @@
                     <h4 class="listing-name"><a
                             href="{% url 'user_property_details' property.slug property.uid %}">{{property.heading}}</a></h4>
                         </div>
-                        <a href="{% url 'admin_edit_property' property.uid %}">
+                        <a href="{% url 'admin_edit_property' property.uid %}" id="edtProp">
                             <span class="icons"><i class="ti-pencil"></i></span>
+                        </a>
+                        <a href="{% url 'delete_prop_ajax' %}" id="dltProp" data-prop-id="{{property.uid}}">
+                            <span class="icons"><i class="ti-trash"></i></span>
                         </a>
             </div>
 

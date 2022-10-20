@@ -10,7 +10,7 @@ from properties.ajax.property import delete_prop
 
 urlpatterns = [
     # Template View
-    path('admin/change-password/', login_required(TemplateView.as_view(template_name = 'dashboard/admin/change_password.html')), name='admin_change_password_temp'),
+    path('admin/change-password/', login_required(TemplateView.as_view(template_name = 'user/admin/change_password.html')), name='admin_change_password_temp'),
 
     # View
     path('admin/', dashboard_admin.DashboardView.as_view(), name='admin_dashboard_view'),

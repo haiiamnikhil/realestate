@@ -259,7 +259,7 @@ $(window).ready(function () {
             contentType:false,
             success:function(response){
                 if (response.success && response.redirect_url == null){
-                    window.location.reload()
+                    // window.location.reload()
                 }
             }
         })

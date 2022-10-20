@@ -1,45 +1,28 @@
 {% extends 'dashboard/base/dashboard.html' %}
 {% block content %}
 {% load static %}
-<div class="row justify-content-center settings">
+<div class="row justify-content-center" id="sysettings">
     <div class="col-lg-12 col-md-12 col-sm-12 mx-auto">
         <div class="card bg-shadow mb-3">
             <div class="card-body">
-                <h3>Notifications Settings</h3>
-                <strong class="mb-0">Security</strong>
-                <p>Control security alert you will be notified.</p>
-                <div class="list-group">
-                    <div class="list-group-item">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <strong class="mb-0">Unusual activity notifications</strong>
-                                <p class=" mb-0">Donec in quam sed urna bibendum tincidunt quis mollis mauris.
-                                </p>
-                            </div>
-                            <div class="col-auto">
-                                <div class="custom-control custom-switch">
-                                    <input type="checkbox" data-toggle="toggle" data-style="ios" data-size="sm">
-                                    <span class="custom-control-label"></span>
-                                </div>
-                            </div>
+                <h3>Email Settings</h3>
+                <p>Messages and Other quries will be using the following email</p>
+                <div class="row align-items-center settings">
+                    <div class="col">
+                        <strong class="mb-0">Allow email notifications</strong><br>
+                        <small class=" mb-0">Help you receive notifications through email</small>
+                    </div>
+
+                    <div class="col-auto">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" id="allow-email" data-toggle="toggle" data-style="ios"
+                                data-size="sm">
                         </div>
                     </div>
-                    <div class="list-group-item">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <strong class="mb-0">Unauthorized financial activity</strong>
-                                <p class=" mb-0">Fusce lacinia elementum eros, sed vulputate urna eleifend
-                                    nec.
-                                </p>
-                            </div>
-                            <div class="col-auto">
-                                <div class="custom-control custom-switch">
-                                    <input type="checkbox" data-toggle="toggle" data-style="ios" data-size="sm">
-                                    <span class="custom-control-label"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+                <div class="collapse">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                    Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
                 </div>
             </div>
         </div>
@@ -49,7 +32,7 @@
                 <p>Please enable system alert you will get.</p>
                 <div class="list-group mb-5 shadow">
                     <div class="list-group-item">
-                        <div class="row align-items-center">
+                        <div class="row align-items-center settings">
                             <div class="col">
                                 <strong class="mb-0">Notify me about new features and updates</strong>
                                 <p class=" mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -60,6 +43,10 @@
                                     <span class="custom-control-label"></span>
                                 </div>
                             </div>
+                        </div>
+                        <div class="collapse" id="allowemailcollapse">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
                         </div>
                     </div>
                     <div class="list-group-item">

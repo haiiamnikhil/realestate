@@ -237,8 +237,6 @@ $(window).ready(function () {
         })
     });
 
-<<<<<<< Updated upstream
-=======
     // delete property
     $(document).on('click', '#dltProp', function (e) {
         e.preventDefault();
@@ -288,5 +286,4 @@ $(window).ready(function () {
         });
     });
 
->>>>>>> Stashed changes
 });

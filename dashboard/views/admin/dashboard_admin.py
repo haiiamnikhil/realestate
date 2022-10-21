@@ -26,6 +26,6 @@ class DashboardView(View):
         params['total_properties'] = properties.all().count()
         params['sold'] = properties.filter(status='sold').count()
         params['active'] = properties.filter(status='active').count()
-        params['cancelled'] = properties.filter(status='cancel').count()
+        params['deleted'] = properties.filter(status='deleted').count()
 
         return params

@@ -1,6 +1,7 @@
 {% extends 'dashboard/base/dashboard.html' %}
 {% block content %}
 {% load static %}
+<<<<<<< Updated upstream
 <div class="row justify-content-center settings">
     <div class="col-lg-12 col-md-12 col-sm-12 mx-auto">
         <div class="card bg-shadow mb-3">
@@ -95,6 +96,11 @@
                 </div>
             </div>
         </div>
+=======
+<div class="row justify-content-center" id="sysettings">
+    <div class="col-lg-12 col-md-12">
+        {% include 'system_settings/admin/forms/email_settings_from.html' %}
+>>>>>>> Stashed changes
     </div>
 </div>
 {% endblock %}

@@ -1,0 +1,49 @@
+<script>
+    $(document).ready(function(){
+        let enableStatus = '{% if email.is_enabled %}on{% else %}off{% endif %}'
+        $('#enable-email').bootstrapToggle(enableStatus);
+        if(enableStatus == 'on'){
+            $('.collapse').collapse('show')
+        }
+    });
+</script>
+<form action="{% url 'admin_email_notification_settings' %}" method="post" id="emailNotif">
+    <div class="submit-page">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="form-submit">
+                    <h3>Email Settings</h3>
+                    <div class="form-row settings">
+                        <div class="form-group col-md-12 d-flex align-items-center justify-content-between">
+                            <div class="checkbox-label">
+                                <strong class="mb-0">Allow email notifications</strong><br>
+                                <small class=" mb-0">Help you receive notifications through email</small>
+                            </div>
+                            <div class="col-auto float-right">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" id="enable-email" data-toggle="toggle" data-style="ios"
+                                        data-size="sm" name="is_enabled" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collapse">
+                        <div class="submit-section">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>Email<i class="text-danger">*</i></label>
+                                    <input required type="email" class="form-control" name="email" placeholder="Enter email" value="{{email.email}}">
+                                    <small class="text-muted">Email where you want to receive notifications</small>
+                                </div>
+                                <div class="form-goup col">
+                                    <input type="hidden" value="{{email.uid}}" name="uid">
+                                    <a href="#" class="btn btn-theme" id="subEmail">Submit email</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

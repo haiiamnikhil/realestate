@@ -12,12 +12,22 @@ class Users(AbstractUser):
     email = models.EmailField(_('email address'), unique=True)
     username = models.CharField(_('username'), max_length=50, null=True, blank=True, unique=True)
     name = models.CharField(max_length=100, unique=False, null=True, blank=True)
+    password = models.CharField(_('password'), max_length=50, null=True, blank=True, unique=True)
 
     class Meta:
         verbose_name_plural = "Users"
 
     def __str__(self):
         return str(self.email)
+
+
+@receiver(post_save,sender=Users)
+def generate_user_details(sender,instance=None,created=False,**kwargs):
+    if created:
+        UserDetails.objects.create(email=instance.email, full_name=instance.name, 
+        first_name=instance.name.split(' ')[0], last_name=instance.name.split(' ')[1:])
+    else:
+        pass
 
 
 class UserDetails(models.Model):
@@ -60,15 +70,6 @@ class UserDetails(models.Model):
         self.full_name = f"{self.first_name} {self.last_name}"
         self.role = 'admin' if self.user.is_superuser == True else 'user'
         super(UserDetails,self).save(*args,**kwargs)
-
-
-@receiver(post_save,sender=Users)
-def generate_user_details(sender,instance=None,created=False,**kwargs):
-    if created:
-        UserDetails.objects.create(email=instance.email, full_name=instance.name, 
-        first_name=instance.name.split(' ')[0], last_name=instance.name.split(' ')[1:])
-    else:
-        pass
 
 
 class UserProfileDetails(models.Model):

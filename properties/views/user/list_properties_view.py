@@ -13,7 +13,7 @@ class ListPoppertiesUser(generic.ListView):
 
     def get_queryset(self):
         query = super().get_queryset()
-        properties = query.all().order_by('-created_at')
+        properties = query.filter(status='active').order_by('-created_at')
         search = self.get_search_params()
         if search:
             properties = query.filter(**search)

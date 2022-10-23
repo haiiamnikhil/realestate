@@ -238,7 +238,7 @@ $(window).ready(function () {
     });
 
     // delete property
-    $(document).on('click', '#dltProp', function (e) {
+    $(document).on('click','#dltProp',function(e){
         e.preventDefault();
         let url = $(this).attr('href');
         let uid = $(this).attr('data-prop-id')

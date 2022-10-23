@@ -22,6 +22,8 @@ urlpatterns = [
 
     path('admin/notifications/', list_notificaitions.ListNotificationsAdmin.as_view(), name='admin_notifications_list'),
     path('admin/notifications/details/<str:uid>/', notification_details.NotificationDetailsAdmin.as_view(), name='admin_notifications_details'),
+
+    path('admin/settings/', login_required(TemplateView.as_view(template_name='system_settings/admin/settings.html')), name='admin_settings'),
     
     path('admin/settings/', settings.SystemSettingsConfig.as_view(), name='admin_settings'),
     

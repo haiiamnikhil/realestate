@@ -7,6 +7,7 @@ from properties.views.admin import create_property, edit_property, list_properti
 from user.views.admin import change_password
 from notifications.views.admin import list_notificaitions, notification_details
 from properties.ajax.property import delete_prop
+from system_settings.views.admin import email_settings, settings
 
 urlpatterns = [
     # Template View
@@ -24,7 +25,10 @@ urlpatterns = [
 
     path('admin/settings/', login_required(TemplateView.as_view(template_name='system_settings/admin/settings.html')), name='admin_settings'),
     
+    path('admin/settings/', settings.SystemSettingsConfig.as_view(), name='admin_settings'),
+    
     # Ajax
     path('admin/password/update/', change_password.ChangePasswordAdmin.as_view(), name='change_password_view'),
     path('ajax/prop/status/', delete_prop, name='delete_prop_ajax'),
+    path('admin/settings/update-notif-email/', email_settings.EmailNotificationSettings.as_view(), name='admin_email_notification_settings'),
 ]

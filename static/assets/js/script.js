@@ -1,24 +1,16 @@
 $(window).ready(function () {
 
-    $(function () {
-        var current = location.pathname;
-        $('.nav-menu li').each(function () {
-            var $this = $(this);
-            $this.removeClass('active')
-            if ($this.find('a').attr('href') == current) {
-                $this.addClass('active');
-            }
-        })
-        $('#sideNavroute li').each(function () {
-            var $this = $(this);
-            $this.removeClass('active')
-
-            if ($this.find('a').attr('href') == current) {
-                $this.addClass('active');
-            }
-        })
-    })
-
+    // toast
+    function genToast(message, theme) {
+        let toast = $(document).find('.toast');
+        toast.addClass(theme)
+        toast.find('.toast-body').html(message)
+        toast.toast({delay:5000})
+        toast.toast('show');
+        toast.on('hide.bs.toast',function(){
+            toast.removeClass(theme)
+        });
+    };
 
     // Loader
     let loader = '<div class="div-loader" aria-busy="true" id="progress" aria-label="Loading, please wait." role="progressbar"></div>'
@@ -152,8 +144,9 @@ $(window).ready(function () {
             success: function (response) {
                 console.log(response)
                 if (response.success) {
-                    console.log(response)
-                    // window.location.reload()
+                    genToast(response.message, 'success')
+                } else {
+                    genToast(response.message,'danger')
                 }
             }
         })
@@ -179,7 +172,7 @@ $(window).ready(function () {
             if (new_password == confirm_password) {
                 formData.append('new_password', new_password)
             } else {
-                alert('Passwords doesnot match')
+                genToast('Password does not match','warning')
                 return
             }
         }
@@ -196,7 +189,7 @@ $(window).ready(function () {
                         form.attr('action', response.redirect_url)
                         $('.re-set-password').show()
                     } else {
-                        alert(response.message)
+                        genToast(response.message)
                     }
                 }
             })
@@ -238,7 +231,7 @@ $(window).ready(function () {
             contentType: false,
             success: function (response) {
                 if (response.success) {
-                    alert(response.message)
+                    genToast(response.message)
                 }
             }
         })
@@ -250,19 +243,47 @@ $(window).ready(function () {
         let url = $(this).attr('href');
         let uid = $(this).attr('data-prop-id')
         let formData = new FormData();
-        formData.append('uid',uid)
+        formData.append('uid', uid)
         $.ajax({
-            url:url,
-            type:'post',
-            data:formData,
-            processData:false,
-            contentType:false,
-            success:function(response){
-                if (response.success && response.redirect_url == null){
-                    // window.location.reload()
+            url: url,
+            type: 'post',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.success && response.redirect_url == null) {
+                    window.location.reload()
+                } else if (response.redirect_url) {
+                    window.location.href = redirect_url
                 }
             }
         })
     })
+
+    $(document).on('click', '#subEmail', function (e) {
+        e.preventDefault();
+        let $form = $('#emailNotif');
+        let url = $form.attr('action');
+        let type = $form.attr('method');
+        let formValue = $form.serializeArray()
+        let formData = new FormData();
+        for (let i = 0; i < formValue.length; i++) {
+            formData.append(formValue[i].name, formValue[i].value)
+        }
+        $.ajax({
+            url: url,
+            type: type,
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.success) {
+                    genToast(response.message,'success')
+                } else {
+                    genToast('Something went wrong','danger')
+                }
+            }
+        });
+    });
 
 });

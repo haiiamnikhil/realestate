@@ -1,16 +1,15 @@
+// toast
+function genToast(message, theme) {
+    let toast = $(document).find('.toast');
+    toast.find('.toast-body').html(message)
+    toast.toast({ delay: 5000 })
+    toast.addClass(theme)
+    toast.toast('show');
+    toast.on('hide.bs.toast', function () {
+        toast.removeClass(theme)
+    });
+};
 $(window).ready(function () {
-
-    // toast
-    function genToast(message, theme) {
-        let toast = $(document).find('.toast');
-        toast.addClass(theme)
-        toast.find('.toast-body').html(message)
-        toast.toast({delay:5000})
-        toast.toast('show');
-        toast.on('hide.bs.toast',function(){
-            toast.removeClass(theme)
-        });
-    };
 
     // Loader
     let loader = '<div class="div-loader" aria-busy="true" id="progress" aria-label="Loading, please wait." role="progressbar"></div>'
@@ -146,7 +145,7 @@ $(window).ready(function () {
                 if (response.success) {
                     genToast(response.message, 'success')
                 } else {
-                    genToast(response.message,'danger')
+                    genToast(response.message, 'danger')
                 }
             }
         })
@@ -172,7 +171,7 @@ $(window).ready(function () {
             if (new_password == confirm_password) {
                 formData.append('new_password', new_password)
             } else {
-                genToast('Password does not match','warning')
+                genToast('Password does not match', 'warning')
                 return
             }
         }
@@ -230,15 +229,16 @@ $(window).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
+                console.log(response)
                 if (response.success) {
-                    genToast(response.message)
+                    genToast(response.message, 'success')
                 }
             }
         })
     });
 
     // delete property
-    $(document).on('click','#dltProp',function(e){
+    $(document).on('click', '#dltProp', function (e) {
         e.preventDefault();
         let url = $(this).attr('href');
         let uid = $(this).attr('data-prop-id')
@@ -278,9 +278,9 @@ $(window).ready(function () {
             contentType: false,
             success: function (response) {
                 if (response.success) {
-                    genToast(response.message,'success')
+                    genToast(response.message, 'success')
                 } else {
-                    genToast('Something went wrong','danger')
+                    genToast('Something went wrong', 'danger')
                 }
             }
         });

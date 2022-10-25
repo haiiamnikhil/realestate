@@ -7,6 +7,7 @@ from django.core.paginator import EmptyPage
 
 from properties.models import Properties
 
+
 @method_decorator(login_required, name="dispatch")
 class ListPoppertiesAdmin(generic.ListView):
     template_name = 'properties/admin/list_properties.html'
@@ -28,3 +29,16 @@ class ListPoppertiesAdmin(generic.ListView):
             page = paginator.page(paginator.num_pages)
 
         return properties
+
+    def get_context_data(self):
+        query = super().get_context_data()
+        properties = Properties.objects.all()
+        query['properties'] = {}
+        query['properties']['total_properties'] = properties.all().count()
+        query['properties']['sold'] = properties.filter(status='sold').count()
+        query['properties']['active'] = properties.filter(
+            status='active').count()
+        query['properties']['deleted'] = properties.filter(
+            status='deleted').count()
+
+        return query

@@ -21,29 +21,29 @@
     {% include 'dashboard/base/dashboard_header.html' %}
     <div class="main-wrapper">
         <div class="toast">
-          <div class="toast-body">
-          </div>
+            <div class="toast-body">
+            </div>
         </div>
         <div class="toast-theme">
         </div>
         <section>
             <div class="col-xl-12">
                 <div class="container-fluid">
-        
+
                     <div class="row">
-        
+
                         <div class="col-lg-3 col-md-4">
                             <div class="dashboard-navbar">
-        
+
                                 {% include 'user/admin/dashboard/admin_basic_details.html' %}
-        
+
                                 <div class="d-navigation">
                                     {% include 'dashboard/admin/dashboard/dashboard_side_nav.html' %}
                                 </div>
-        
+
                             </div>
                         </div>
-        
+
                         <div class="col-lg-9 col-md-8">
                             {% block content %}
 
@@ -70,7 +70,7 @@
     <script src="{% static 'assets/js/script.js' %}"></script>
     <script src="{% static 'assets/js/page-script.js' %}"></script>
     <script src="{% static 'assets/js/cl-switch.js' %}"></script>
-    
+
 
 </body>
 

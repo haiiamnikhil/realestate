@@ -6,7 +6,7 @@ import uuid
 
 
 class Notifications(models.Model):
-    user = uid = models.UUIDField(default=uuid.uuid4, unique=True)
+    uid = models.UUIDField(default=uuid.uuid4, unique=True)
     user = models.ForeignKey(GuestUsers, on_delete=models.CASCADE, null=True, blank=True)
     property = models.ForeignKey(Properties, on_delete=models.CASCADE, null=True, blank=True)
     comment = models.TextField(max_length=500, null=True, blank=True)
@@ -17,3 +17,15 @@ class Notifications(models.Model):
 
     def __str__(self):
         return str(self.user.full_name)
+
+
+class NotificationQueue(models.Model):
+    uid = models.UUIDField(default=uuid.uuid4, unique=True)
+    notification = models.ForeignKey(Notifications, on_delete=models.CASCADE, null=True, blank=True)
+    email_notified = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name_plural = 'Notification Queue'
+
+    def __str__(self):
+        return str(self.notification.user.full_name)

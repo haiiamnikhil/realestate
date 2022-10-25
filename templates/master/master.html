@@ -18,6 +18,12 @@
 
     <div class="main-wrapper">
         {% include 'common/header.html' %}
+        <div class="toast">
+            <div class="toast-body">
+            </div>
+        </div>
+        <div class="toast-theme">
+        </div>
         {% block content %}
 
         {% endblock %}
@@ -27,7 +33,7 @@
 
     
     <script src="{% static 'assets/js/popper.min.js' %}"></script>
-    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
     <script src="{% static 'assets/js/rangeslider.js' %}"></script>
     <script src="{% static 'assets/js/select2.min.js' %}"></script>
     <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
@@ -37,6 +43,7 @@
     <script src="{% static 'assets/js/imagesloaded.js' %}"></script>
     
     <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script src="{% static 'assets/js/page-script.js' %}"></script>
     <script src="{% static 'assets/js/script.js' %}"></script>
     <script src="{% static 'assets/js/cl-switch.js' %}"></script>
 

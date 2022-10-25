@@ -24,7 +24,11 @@
 
     <div class="agent-widget">
         <div class="agent-title">
-            <div class="agent-photo"><img src="{% static 'assets/img/default.png' %}" alt=""></div>
+            <div class="agent-photo">
+                {% for image in property.user.user_profile_img.filter %}
+                <img src="{{image.profile_image.url}}" alt="">
+                {% endfor %}
+            </div>
             <div class="agent-details">
                 <h4><a href="#">{{property.user.full_name}}</a></h4>
                 <span class="d-flex"><i class="fas fa-mobile-alt"></i>{{property.user.phone}}</span>

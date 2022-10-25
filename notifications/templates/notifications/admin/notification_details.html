@@ -12,6 +12,16 @@
         </div>
         <h2 class="post-title">{{notification.property.heading}}</h2>
         <p>{{notification.comment}}.</p>
+        <br>
+        <div class="post-bottom-meta">
+            <div class="post-tags">
+                <ul class="meta-comment-tag d-flex flex-column">
+                    <li>{{notification.user.full_name}}</li>
+                    <li>{{notification.user.email}}</li>
+                    <li>{{notification.user.phone}}</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

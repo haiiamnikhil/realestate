@@ -285,5 +285,58 @@ $(window).ready(function () {
             }
         });
     });
-
+    console.log("page loading")
 });
+
+$(window).load(function () {
+    $.ajax({
+        url: '/properties/ajax/list/latest-prop/',
+        type: 'GET',
+        success: function (response) {
+            if (response.success) {
+                console.log(response.template_render)
+                $('.latest_property_carousel').html('')
+                $('.latest_property_carousel').html(response.template_render)
+                $('.property-slide').slick({
+                    dots: true,
+                    lazyLoad: 'ondemand',
+                    infinite: true,
+                    speed: 300,
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                    arrows : false,
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 2,
+                                infinite: true,
+                                dots: true
+                            }
+                        },
+                        {
+                            breakpoint: 800,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                        }
+                    ]
+                });
+            } else {
+                console.log(response.message)
+            }
+        }
+    });
+    console.log("page loading completed")
+})

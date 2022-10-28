@@ -6,17 +6,19 @@ from django.core.paginator import EmptyPage
 from properties.models import Properties
 
 
-class ListPoppertiesUser(generic.ListView):
+class ListPoppertiesByCategory(generic.ListView):
     template_name = 'properties/user/list_properties_template.html'
     paginate_by = 20
     model = Properties
 
-    def get_queryset(self):
+    def get_queryset(self, category=None):
         query = super().get_queryset()
-        properties = query.filter(status='active').order_by('-created_at')
-        search = self.get_search_params()
-        if search:
-            properties = query.filter(**search)
+        filter_value = self.get_filter_value()
+
+        if filter_value['category'] == 'recent':
+            properties = query.filter(status='active').order_by('-created_at')[:10]
+        else:
+            properties = query.filter(**filter_value).order_by('-created_at')
 
         paginator = Paginator(properties, self.paginate_by)
 
@@ -32,19 +34,12 @@ class ListPoppertiesUser(generic.ListView):
         return properties
 
     def get_context_data(self):
-        context = super(ListPoppertiesUser,self).get_context_data()
-        context['search'] = self.get_search_params()
+        context = super(ListPoppertiesByCategory,self).get_context_data()
+        context['category'] = self.kwargs.get('category')
         return context
 
-    def get_search_params(self):
+    def get_filter_value(self):
         params = {}
-        value = self.request.GET
-        for key, value in value.items():
-            if value == 'all' or key == 'page':
-                pass
-            elif key == 'property':
-                params['heading__icontains'] = value
-            else:
-                params[key] = value
+        params['category'] = self.kwargs.get('category')
         params['status'] = 'active'
         return params

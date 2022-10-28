@@ -58,4 +58,15 @@ $(window).ready(function () {
             }
         }
     });
+
+    $('#lstPrpFrm input, #lstPrpFrm select').each(function(){
+        if ($(this).val()){
+            $(this).attr('name',$(this).attr('data-val'))
+        }
+    })
+
+    $('#lstPrpFrm').find("select,input").on('change',function(){
+        $(this).attr('name',$(this).attr('data-val'))
+    });
+
 });

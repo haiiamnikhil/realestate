@@ -1,9 +1,8 @@
 {% extends 'master/master.html' %}
 {% block content %}
 {% include 'common/search_bar.html' %}
-<section id="lstPrp">
+<section id="lstPrp" class="p-40">
     <div class="container">
-
         <div class="row">
             <div class="col-md-12 col-sm-12 d-flex">
                 <h4>Total Property Find is: <span class="theme-cl">{{object_list.count}}</span></h4>
@@ -16,4 +15,5 @@
         {% include 'properties/common/pagination.html' with url_name=request.resolver_match.view_name %}
     </div>
 </section>
+
 {% endblock %}

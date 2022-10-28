@@ -11,6 +11,7 @@ class Notifications(models.Model):
     property = models.ForeignKey(Properties, on_delete=models.CASCADE, null=True, blank=True)
     comment = models.TextField(max_length=500, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = 'Notifications'

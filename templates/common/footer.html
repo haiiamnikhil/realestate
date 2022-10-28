@@ -14,33 +14,31 @@
 
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-4">
+                <div class="col-lg-3 col-md-4 text-left">
                     <div class="footer-widget">
                         <h4 class="widget-title">Navigations</h4>
                         <ul class="footer-menu">
                             <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="faq.html">FAQs Page</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="blog.html">Blog</a></li>
+                            <!-- <li><a href="faq.html">FAQs Page</a></li> -->
+                            <li><a href="{% url 'contact_us_temp' %}">Contact</a></li>
+                            <!-- <li><a href="#">Blog</a></li> -->
                         </ul>
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-md-4">
+                <div class="col-lg-3 col-md-4 text-left">
                     <div class="footer-widget">
                         <h4 class="widget-title">The Highlights</h4>
                         <ul class="footer-menu">
-                            <li><a href="grid.html#">Apartment</a></li>
-                            <li><a href="grid.html#">My Houses</a></li>
-                            <li><a href="grid.html#">Restaurant</a></li>
-                            <li><a href="grid.html#">Nightlife</a></li>
-                            <li><a href="grid.html#">Villas</a></li>
+                            <li><a href="{% url 'user_list_properties_category' 'apartment' %}">Apartment</a></li>
+                            <li><a href="{% url 'user_list_properties_category' 'house' %}">My Houses</a></li>
+                            <li><a href="{% url 'user_list_properties_category' 'villas' %}">Villas</a></li>
+                            <li><a href="{% url 'user_list_properties_category' 'flat' %}">Flat</a></li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-md-6">
+                <!-- <div class="col-lg-3 col-md-6 text-left">
                     <div class="footer-widget">
                         <h4 class="widget-title">My Account</h4>
                         <ul class="footer-menu">
@@ -51,35 +49,8 @@
                             <li><a href="#">Add Property</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-widget">
-                        <h4 class="widget-title">Download Apps</h4>
-                        <a href="grid.html#" class="other-store-link">
-                            <div class="other-store-app">
-                                <div class="os-app-icon">
-                                    <i class="lni-playstore theme-cl"></i>
-                                </div>
-                                <div class="os-app-caps">
-                                    Google Play
-                                    <span>Get It Now</span>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="grid.html#" class="other-store-link">
-                            <div class="other-store-app">
-                                <div class="os-app-icon">
-                                    <i class="lni-apple theme-cl"></i>
-                                </div>
-                                <div class="os-app-caps">
-                                    App Store
-                                    <span>Now it Available</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
 
             </div>
         </div>
@@ -90,7 +61,7 @@
             <div class="row align-items-center">
 
                 <div class="col-lg-6 col-md-6">
-                    <p class="mb-0">© 2019 Rikada. Designd By <a href="https://themezhub.com">Themez Hub</a> All Rights
+                    <p class="mb-0">© 2022 Vinmaya RealEstate. Designd By <a href="#">Stackcache</a> All Rights
                         Reserved</p>
                 </div>
 

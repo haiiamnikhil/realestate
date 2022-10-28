@@ -14,7 +14,7 @@ class LoginAdmin(generic.CreateView):
         if user and next is not None:      
             return redirect(next)
         elif user:
-            return redirect('user_list_properties')
+            return redirect('admin_dashboard_view')
         else:
             return redirect('admin_login_temp')
 

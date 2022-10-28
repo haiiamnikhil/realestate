@@ -285,7 +285,6 @@ $(window).ready(function () {
             }
         });
     });
-    console.log("page loading")
 });
 
 $(window).load(function () {
@@ -294,7 +293,6 @@ $(window).load(function () {
         type: 'GET',
         success: function (response) {
             if (response.success) {
-                console.log(response.template_render)
                 $('.latest_property_carousel').html('')
                 $('.latest_property_carousel').html(response.template_render)
                 $('.property-slide').slick({
@@ -334,9 +332,8 @@ $(window).load(function () {
                     ]
                 });
             } else {
-                console.log(response.message)
+                genToast(response.message,'danger')
             }
         }
     });
-    console.log("page loading completed")
 })

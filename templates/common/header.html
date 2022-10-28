@@ -1,13 +1,38 @@
+{% load static %}
+<div class="top-header">
+    <div class="container">
+        <div class="row">
+        
+            <div class="col-lg-6 col-md-6">
+                <div class="cn-info">
+                    <ul>
+                        <li><i class="ti-mobile"></i>91 256 584 5748</li>
+                        <li><i class="ti-email"></i>support@vinmaya-builders.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <ul class="top-social">
+                    <li><a href="home-2.html#"><i class="ti-facebook"></i></a></li>
+                    <li><a href="home-2.html#"><i class="ti-linkedin"></i></a></li>
+                    <li><a href="home-2.html#"><i class="ti-instagram"></i></a></li>
+                    <li><a href="home-2.html#"><i class="ti-twitter"></i></a></li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+</div>
 <div class="header header-light head-shadow">
     <div class="container">
         <nav id="navigation" class="navigation navigation-landscape">
             <div class="nav-header">
                 <a class="nav-brand" href="grid.html#">
-                    <img src="assets/img/logo.png" class="logo" alt="" />
+                    <img src="{% static 'assets/css/img/vinmaya-builders.png' %}" class="logo" alt="vinmaya-builders" />
                 </a>
                 <div class="nav-toggle"></div>
             </div>
-            <div class="nav-menus-wrapper" style="transition-property: none;">
+            <div class="nav-menus-wrapper float-right" style="transition-property: none;">
                 <ul class="nav-menu align-to-center">
 
                     <li><a href="{% url 'user_list_properties' %}">Properties</a></li>

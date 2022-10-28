@@ -14,7 +14,9 @@
 </head>
 
 <body class="blue-skin">
-    <div id="preloader"><div class="preloader"><span></span><span></span></div></div>
+    <div id="preloader">
+        <div class="preloader"><span></span><span></span></div>
+    </div>
 
     <div class="main-wrapper">
         {% include 'common/header.html' %}
@@ -25,13 +27,12 @@
         <div class="toast-theme">
         </div>
         {% block content %}
-
         {% endblock %}
-        <a id="back2Top" class="top-scroll" title="Back to top" href="submit-property.html#"><i class="ti-arrow-up"></i></a>
+        {% include 'common/carousel.html' %}
         {% include 'common/footer.html' %}
     </div>
 
-    
+
     <script src="{% static 'assets/js/popper.min.js' %}"></script>
     <script src="{% static 'assets/js/bootstrap.js' %}"></script>
     <script src="{% static 'assets/js/rangeslider.js' %}"></script>
@@ -41,7 +42,7 @@
     <script src="{% static 'assets/js/slider-bg.js' %}"></script>
     <script src="{% static 'assets/js/lightbox.js' %}"></script>
     <script src="{% static 'assets/js/imagesloaded.js' %}"></script>
-    
+
     <script src="{% static 'assets/js/custom.js' %}"></script>
     <script src="{% static 'assets/js/page-script.js' %}"></script>
     <script src="{% static 'assets/js/script.js' %}"></script>
